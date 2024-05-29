@@ -1,11 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@use "sass:map";
+@include mat.core();
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+    ),
+  )
+);
 
 html,
 body {
+  @include mat.all-component-colors($dark-theme);
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: gray;
 }
+
+* {
+  color: white;
+}
+// @import "../node_modules/@angular/material/prebuilt-themes/azure-blue.css";

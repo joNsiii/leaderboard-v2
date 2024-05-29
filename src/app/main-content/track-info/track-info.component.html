@@ -1,0 +1,39 @@
+<header>
+    <h1>{{ currentTrackData.name }}</h1>
+    <div class="example-button-container">
+        <button routerLink="/all-tracks" mat-mini-fab color="primary">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</header>
+<section>
+    <div class="user-action-field">
+        <button mat-fab class="add-btn" color="primary" (click)="openDialog()"></button>
+        <mat-select  [(ngModel)]="carClass" (ngModelChange)="onChange()">
+            <mat-option value="gt3">GT3</mat-option>
+            <mat-option value="hypercars">Hypercars</mat-option>
+        </mat-select>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Driver</th>
+                <th>Car</th>
+                <th>Time</th>
+                <th>Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (data of currentTrackData[carClass]; track $index) {
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td>{{ data.driver }}</td>
+                <td>{{ data.car }}</td>
+                <td>{{ data.time }}</td>
+                <td>{{ data.time }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,20 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-toolbar>
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+        <h1 class="title">Time Attack</h1>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+    <mat-drawer class="sidenav" mode="side" #drawer [opened]="true">
+        <header>
+            LOGO
+        </header>
+        <div class="sidenav-links">
+            <a href="">Dashboard</a>
+            <a href="user">User</a>
+            <a href="all-tracks">Tracks</a>
+        </div>
+    </mat-drawer>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+</mat-drawer-container>

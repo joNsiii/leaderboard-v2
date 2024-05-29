@@ -1,0 +1,12 @@
+<section>
+  @for (track of allTracks; track $index) {
+  <mat-card [routerLink]="'/trackinfo/' + track.id" class="card">
+    <mat-card-title>{{ track.name }}</mat-card-title>
+    <mat-card-content>
+      @if (track.id) {
+      <img src="/img/{{track.id}}.png" alt="{{track.id}}">
+      }
+    </mat-card-content>
+  </mat-card>
+  }
+</section>

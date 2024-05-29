@@ -1,0 +1,70 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  h1 {
+    font-size: 68px;
+  }
+}
+
+button {
+  background-color: transparent;
+}
+
+.add-btn {
+  width: 200px;
+}
+
+.mat-mdc-select {
+  width: 20%;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 120px;
+  gap: 48px;
+}
+
+.user-action-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  select {
+    color: black;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0 10px;
+  padding: 25px;
+  border-radius: 5px;
+
+  th {
+    text-align: left;
+    padding: 12px 16px;
+  }
+
+  td {
+    padding: 12px 16px;
+  }
+
+  tbody td:first-child {
+    padding: 12px 16px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  tbody td:last-child {
+    padding: 12px 16px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: rgba($color: white, $alpha: 0.3);
+  }
+}
