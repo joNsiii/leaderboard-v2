@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
-import { FirebaseService } from '../../firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';

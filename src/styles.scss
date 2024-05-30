@@ -18,6 +18,6 @@ body {
 }
 
 * {
-  color: white;
+  color: rgb(212, 212, 212)
 }
-// @import "../node_modules/@angular/material/prebuilt-themes/azure-blue.css";
+@import "@angular/material/prebuilt-themes/azure-blue.css";

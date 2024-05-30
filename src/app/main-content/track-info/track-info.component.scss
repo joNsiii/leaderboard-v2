@@ -16,9 +16,6 @@ button {
   width: 200px;
 }
 
-.mat-mdc-select {
-  width: 20%;
-}
 
 section {
   display: flex;
@@ -30,11 +27,7 @@ section {
 .user-action-field {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  select {
-    color: black;
-  }
+  align-items: flex-start;
 }
 
 table {

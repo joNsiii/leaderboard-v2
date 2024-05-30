@@ -8,11 +8,14 @@
 </header>
 <section>
     <div class="user-action-field">
-        <button mat-fab class="add-btn" color="primary" (click)="openDialog()"></button>
-        <mat-select  [(ngModel)]="carClass" (ngModelChange)="onChange()">
-            <mat-option value="gt3">GT3</mat-option>
-            <mat-option value="hypercars">Hypercars</mat-option>
-        </mat-select>
+        <button mat-fab class="add-btn" color="primary" (click)="openDialog()"> ADD NEW DRIVER</button>
+        <mat-form-field>
+            <mat-label>Choose a class</mat-label>
+            <mat-select [(ngModel)]="carClass" (ngModelChange)="onChange()">
+                <mat-option value="gt3">GT3</mat-option>
+                <mat-option value="hypercars">Hypercars</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <table>
         <thead>
@@ -21,7 +24,6 @@
                 <th>Driver</th>
                 <th>Car</th>
                 <th>Time</th>
-                <th>Class</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +32,6 @@
                 <td>{{ $index +1 }}</td>
                 <td>{{ data.driver }}</td>
                 <td>{{ data.car }}</td>
-                <td>{{ data.time }}</td>
                 <td>{{ data.time }}</td>
             </tr>
             }
