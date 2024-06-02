@@ -1,0 +1,44 @@
+<section>
+    <h2 class="h2" mat-dialog-title>Add new driver</h2>
+    <mat-dialog-content>
+        <form (ngSubmit)="onSubmit(driverForm)" #driverForm="ngForm">
+          <mat-form-field>
+                <mat-label>Time</mat-label>
+                <input name="time" #time="ngModel" [(ngModel)]="driver.time" matInput placeholder="m.ss.SSS" required  pattern="\d{1}.\d{2}.\d{3}">
+                @if(!time.valid && (time.touched || driverForm.submitted)) {
+                <p style="color: red; margin-bottom: 0;">Time is required</p>
+                }
+                @if(time.errors?.['pattern']) {
+                <p style="color: red; margin-bottom: 0;">Use this timeformat: m.ss.SSS</p>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Class</mat-label>
+                <mat-select name="carClass" #carClass="ngModel" (ngModelChange)="selectCars($event)" [(ngModel)]="driver.carClass" required>
+                    <mat-option value="gt3">GT3</mat-option>
+                    <mat-option value="hypercars">Hypercars</mat-option>
+                </mat-select>
+                @if(!carClass.valid && (carClass.touched || driverForm.submitted)) {
+                <p style="color: red; margin-bottom: 0;">Please choose a class</p>
+                }
+            </mat-form-field>
+            @if (filteredCars.length > 0) {
+                <mat-form-field >
+                    <mat-label>Car</mat-label>
+                    <mat-select name="car" #car="ngModel" [(ngModel)]="driver.car" required>
+                        @for (car of filteredCars; track $index) {
+                            <mat-option value="{{ car }}">{{ car }}</mat-option>
+                        }
+                    </mat-select>
+                    @if(car.invalid && (car.touched || driverForm.submitted)) {
+                    <p style="color: red; margin-bottom: 0;">Please choose a car</p>
+                    }
+                </mat-form-field>
+            }
+            <mat-dialog-actions>
+                <button mat-button mat-dialog-close>No</button>
+                <button type="submit" mat-button>Ok</button>
+            </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+</section>

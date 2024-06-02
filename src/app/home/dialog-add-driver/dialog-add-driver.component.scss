@@ -1,0 +1,30 @@
+section {
+  background-image: linear-gradient(
+    to right top,
+    #2b3742,
+    #242c35,
+    #1c2229,
+    #15181d,
+    #0a0d11
+  );
+}
+
+.h2 {
+  color: white;
+  font-size: 32px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+}
+
+mat-dialog-content {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

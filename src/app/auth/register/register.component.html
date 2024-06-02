@@ -1,0 +1,43 @@
+<div class="reg-container">
+    <h1>Register</h1>
+    <form (ngSubmit)="onSubmitRegister(registerForm)" #registerForm="ngForm">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" #email="ngModel" name="reg-email" [(ngModel)]="newUser.regEmail" matInput
+                placeholder="Ex. pat@example.com" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+            @if (email.invalid && (email.touched && email.dirty || registerForm.submitted)) {
+            <mat-error class="error">Email is required</mat-error>
+            }
+            @if (email.errors?.['pattern']) {
+            <mat-error class="error">Enter a valid email</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input type="text" #username="ngModel" name="reg-username" [(ngModel)]="newUser.regUsername" matInput
+                required>
+            @if (username.invalid && (username.touched && username.dirty || registerForm.submitted)) {
+            <mat-error class="error">Username is required</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput #password="ngModel" name="reg-password" [(ngModel)]="newUser.regPassword"
+                [type]="hide ? 'password' : 'text'" required>
+            @if (password.invalid && (password.touched && password.dirty || registerForm.submitted)) {
+            <mat-error class="error">Password is required</mat-error>
+            }
+            <button type="button" mat-icon-button matSuffix (click)="clickEvent($event)">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        @if(errorMessage) {
+            <p class="error">{{ errorMessage }}</p>
+        }
+        <mat-dialog-actions>
+            <button type="submit" mat-raised-button color="primary">Register</button>
+            <button [routerLink]="['/auth/login']" type="button" mat-raised-button color="primary">Back to
+                Login</button>
+        </mat-dialog-actions>
+    </form>
+</div>

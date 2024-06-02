@@ -1,0 +1,47 @@
+mat-card {
+  width: 900px;
+  height: 900px;
+  display: flex;
+  position: relative;
+  padding: 8px;
+  justify-content: space-between;
+  background-image: linear-gradient(
+    to right top,
+    #2b3742,
+    #242c35,
+    #1c2229,
+    #15181d,
+    #0a0d11
+  );
+}
+
+mat-card-title {
+  font-size: 48px;
+}
+
+.info-table {
+  width: 70%;
+  margin-top: 16px;
+
+  td {
+    font-size: 24px;
+    width: 55%;
+  }
+
+  textarea {
+    resize: none;
+  }
+}
+
+mat-card-actions {
+  align-self: flex-end;
+}
+
+.profile-image {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+}

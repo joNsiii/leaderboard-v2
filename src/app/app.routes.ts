@@ -1,19 +1,30 @@
 import { Routes } from '@angular/router';
-import { TracksComponent } from './main-content/tracks/tracks.component';
-import { UserProfileComponent } from './main-content/user-profile/user-profile.component';
-import { TrackInfoComponent } from './main-content/track-info/track-info.component';
-import { DashboardComponent } from './main-content/dashboard/dashboard.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { TracksComponent } from './home/tracks/tracks.component';
+import { TrackInfoComponent } from './home/track-info/track-info.component';
+import { LoginComponent } from './auth/login/login.component';
+import { TeamMemberComponent } from './home/team-member/team-member.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: MainPageComponent,
+    path: 'auth',
+    component: AuthComponent,
     children: [
-      { path: '', component: DashboardComponent },
-      { path: 'user', component: UserProfileComponent },
-      { path: 'trackinfo/:id', component: TrackInfoComponent },
-      { path: 'all-tracks', component: TracksComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ],
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'team', component: TeamMemberComponent},
+      { path: 'all-tracks', component: TracksComponent},
+      { path: 'trackinfo/:id', component: TrackInfoComponent},
     ],
   },
 ];

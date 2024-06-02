@@ -1,4 +1,5 @@
 export interface NewUser {
-    email: string,
-    username:string,
+  regEmail: string;
+  regUsername: string;
+  regPassword: string;
 }

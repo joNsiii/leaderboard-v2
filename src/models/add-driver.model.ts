@@ -1,5 +1,7 @@
+import { User } from "firebase/auth";
+
 export class Driver {
-  driver: string = '';
+  driver: string | null | undefined;
   time: string = '';
   car: string = '';
   carClass: string = '';

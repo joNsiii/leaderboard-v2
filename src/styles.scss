@@ -15,9 +15,10 @@ body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  --mdc-elevated-card-container-shape: 8px;
 }
 
 * {
   color: rgb(212, 212, 212)
 }
-@import "@angular/material/prebuilt-themes/azure-blue.css";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';

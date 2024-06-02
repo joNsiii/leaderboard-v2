@@ -1,0 +1,39 @@
+.reg-container {
+    width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 32px;
+    background-image: linear-gradient(
+      to right top,
+      #2b3742,
+      #242c35,
+      #1c2229,
+      #15181d,
+      #0a0d11
+    );
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  mat-form-field {
+    position: relative;
+  }
+
+  .error {
+    color: red;
+  }
+  
