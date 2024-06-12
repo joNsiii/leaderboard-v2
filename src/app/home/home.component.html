@@ -4,11 +4,11 @@
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
             <h1 class="title">Time Attack</h1>
         </div>
-        <button (click)="authService.logout()" mat-flat-button color="warn">Logout</button>
+        <button (click)="logoutAndDeleteCurrentUser()" mat-flat-button color="warn">Logout</button>
     </mat-toolbar>
     <mat-drawer class="sidenav" mode="side" #drawer [opened]="true">
         <div (click)="openDialog()" class="profile-container">
-            <img src="img/ph-profil-pic.jpg" alt="">
+            <img [src]="userService.currentUserProfile?.profileImageUrl || 'img/ph-profil-pic.jpg'" alt="">
             <h4>{{ userService.currentUser?.displayName }}</h4>
         </div>
         <div class="sidenav-links">

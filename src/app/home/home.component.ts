@@ -7,11 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogMyProfileComponent } from './dialog-my-profile/dialog-my-profile.component';
 
 @Component({
@@ -45,5 +41,10 @@ export class HomeComponent {
 
   openDialog(): void {
     this.dialog.open(DialogMyProfileComponent);
+  }
+
+  logoutAndDeleteCurrentUser() {
+    this.userService.currentUserProfile = undefined;
+    this.authService.logout();
   }
 }

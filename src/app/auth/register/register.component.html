@@ -4,7 +4,7 @@
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input type="email" #email="ngModel" name="reg-email" [(ngModel)]="newUser.regEmail" matInput
-                placeholder="Ex. pat@example.com" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                placeholder="Ex. pat@example.com" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.]{2,}[.]{1}[a-zA-Z]{2,}">
             @if (email.invalid && (email.touched && email.dirty || registerForm.submitted)) {
             <mat-error class="error">Email is required</mat-error>
             }

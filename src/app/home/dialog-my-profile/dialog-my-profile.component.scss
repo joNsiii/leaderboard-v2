@@ -1,6 +1,6 @@
 mat-card {
   width: 900px;
-  height: 900px;
+  height: 700px;
   display: flex;
   position: relative;
   padding: 8px;
@@ -17,6 +17,11 @@ mat-card {
 
 mat-card-title {
   font-size: 48px;
+}
+
+mat-card-subtitle {
+  font-size: 24px;
+  margin-top: 16px;
 }
 
 .info-table {
@@ -37,11 +42,17 @@ mat-card-actions {
   align-self: flex-end;
 }
 
-.profile-image {
+.image-container {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  display: flex;
+  flex-direction: column;
   top: 10px;
   right: 10px;
-  border-radius: 50%;
+  gap: 16px;
+
+  .profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
 }

@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,9 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  public auth = inject(AuthService);
+  authService = inject(AuthService);
   router = inject(Router);
   hide: boolean = true;
-  isFlipped: boolean = false;
   error: boolean = false;
   errorMessage: string | null = null;
 
@@ -39,12 +39,13 @@ export class LoginComponent {
 
   onSubmitLogin(loginFrom: NgForm) {
     if (loginFrom.valid && loginFrom.submitted) {
-      this.auth.login(this.user.email, this.user.password).subscribe({
+      this.authService.login(this.user.email, this.user.password).subscribe({
         next: () => {
           this.router.navigateByUrl('/home/dashboard');
+          console.log(this.authService.currentUserSignal());
         },
         error: (err) => {
-            this.errorMessage = 'No user found';
+          (this.errorMessage = 'No user found'), err;
         },
       });
     }
@@ -54,4 +55,14 @@ export class LoginComponent {
     this.hide = !this.hide;
     event.stopPropagation();
   }
+
+  // onSubmitLogin(loginFrom: NgForm) {
+  //   if (loginFrom.valid && loginFrom.submitted) {
+  //     this.authService
+  //       .login(this.user.email, this.user.password)
+  //       .then(() => this.router.navigateByUrl('/home/dashboard'))
+  //       .then(() => window.location.reload())
+  //       .catch(() => this.router.navigateByUrl('/auth/login'));
+  //   }
+  // }
 }

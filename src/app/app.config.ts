@@ -15,7 +15,12 @@ import {
   provideFirestore,
 } from '@angular/fire/firestore';
 import { firebaseConfig } from '../environments/environment';
-import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +30,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth(initializeApp(firebaseConfig))),
-    provideFirestore(() => getFirestore()), provideAnimationsAsync(),
-    provideHttpClient(withInterceptorsFromDi(),withFetch())
+    provideStorage(() => getStorage(initializeApp(firebaseConfig))),
+    provideFirestore(() => getFirestore()),
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
   ],
 };

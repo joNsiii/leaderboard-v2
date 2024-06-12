@@ -1,39 +1,10 @@
 <main>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">Jens Gartsch</span>
-        </mat-card-content>
-      </mat-card>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">Name</span>
-        </mat-card-content>
-      </mat-card>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">Name</span>
-        </mat-card-content>
-      </mat-card>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">George</span>
-        </mat-card-content>
-      </mat-card>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">Marcel</span>
-        </mat-card-content>
-      </mat-card>
-    <mat-card class="card">
-        <mat-card-content (click)="openDialog()">
-            <img src="img/jens.png" alt="">
-            <span class="driver-name">Name</span>
-        </mat-card-content>
-      </mat-card>
-    
+  @for (profile of userService.allUserProfiles; track $index) {
+  <mat-card class="card">
+    <mat-card-content (click)="openDialog()">
+      <img [src]="profile.profileImageUrl || 'img/ph-profil-pic.jpg'" alt="">
+      <span class="driver-name"> {{ profile.userName }}</span>
+    </mat-card-content>
+  </mat-card>
+  }
 </main>

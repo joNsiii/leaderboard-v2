@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { NewUser } from '../../../models/new-user.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ import { NewUser } from '../../../models/new-user.interface';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  public auth = inject(AuthService);
+  authService = inject(AuthService);
+  userService = inject(UserService);
   router = inject(Router);
   hide: boolean = true;
   error: boolean = false;
@@ -40,7 +42,7 @@ export class RegisterComponent {
 
   onSubmitRegister(register: NgForm) {
     if (register.valid && register.submitted) {
-      this.auth
+      this.authService
         .register(
           this.newUser.regEmail,
           this.newUser.regPassword,
@@ -51,6 +53,7 @@ export class RegisterComponent {
             this.errorMessage = err.code;
           },
           next: () => {
+            this.userService.createUserProfile();
             this.router.navigateByUrl('/auth/login');
           },
         });
