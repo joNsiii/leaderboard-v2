@@ -60,6 +60,7 @@ export class AuthService {
     onAuthStateChanged(this.firebaseAuth, (user) => {
       if (user) {
         this.currentUserSignal.set(user);
+        
       } else {
         this.currentUserSignal.set(user);
         this.router.navigateByUrl('/auth/login');

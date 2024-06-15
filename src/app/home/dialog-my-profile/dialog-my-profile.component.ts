@@ -28,7 +28,7 @@ import { UserProfile } from '../../../models/User-profile.interface';
   templateUrl: './dialog-my-profile.component.html',
   styleUrl: './dialog-my-profile.component.scss',
 })
-export class DialogMyProfileComponent implements OnInit{
+export class DialogMyProfileComponent implements OnInit {
   userService = inject(UserService);
   authService = inject(AuthService);
   firebaseApp = inject(FirebaseApp);
@@ -76,7 +76,7 @@ export class DialogMyProfileComponent implements OnInit{
       const Url = await getDownloadURL(storageRef);
       this.driverData!.profileImageUrl = Url;
     } else {
-      console.error('User is not authenticated.'); // Handle the case where the user is not authenticated
+      console.error('User is not authenticated.');
     }
   }
 }

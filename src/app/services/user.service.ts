@@ -35,12 +35,12 @@ export class UserService {
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.currentUser) {
-      const unsub: Unsubscribe = this.getCurrentUser(this.currentUser.uid);
-      unsub();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.currentUser) {
+  //     const unsub: Unsubscribe = this.getCurrentUser(this.currentUser.uid);
+  //     unsub();
+  //   }
+  // }
 
   private getUserDocRef(userId: string) {
     return doc(this.userCollRef, userId);
