@@ -55,4 +55,24 @@ mat-card-actions {
     height: 300px;
     border-radius: 50%;
   }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .file-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    mat-icon {
+      cursor: pointer;
+      color: #f44336;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+  }
 }

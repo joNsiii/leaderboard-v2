@@ -1,5 +1,11 @@
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
 mat-card {
-  width: 50%;
+  width: 500px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
@@ -11,5 +17,55 @@ mat-card {
 
   mat-card-header {
     font-size: 40px;
+  }
+}
+
+.input-and-search-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.add-clip-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 35px;
+
+  .error-message {
+    color: red;
+    position: absolute;
+    bottom: -35px;
+    left: 0;
+  }
+}
+
+.clip-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.added-file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .file-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    color: #f44336;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }

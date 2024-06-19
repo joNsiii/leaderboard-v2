@@ -8,7 +8,6 @@
 </header>
 <section>
     <div class="user-action-field">
-        <button mat-flat-button class="add-btn" color="primary" (click)="openDialog()"> ADD NEW DRIVER</button>
         <mat-form-field>
             <mat-label>Choose a class</mat-label>
             <mat-select [(ngModel)]="carClass" (ngModelChange)="onChange()">
@@ -16,6 +15,7 @@
                 <mat-option value="hypercars">Hypercars</mat-option>
             </mat-select>
         </mat-form-field>
+        <button mat-flat-button class="add-btn" color="primary" (click)="openDialog()"> ADD NEW DRIVER</button>
     </div>
     <table>
         <thead>
@@ -28,12 +28,19 @@
         </thead>
         <tbody>
             @for (data of currentTrackData[carClass]; track $index) {
+            @if (data) {
             <tr>
-                <td>{{ $index +1 }}</td>
+                @if(getTrophyByRank($index +1) !== null) {
+                <td><img class="trophy-image" [src]="getTrophyByRank($index +1)" alt="index"></td>
+                }@else {
+                <td><span class="index">{{ $index +1 }}</span></td>
+                }
                 <td>{{ data.driver }}</td>
                 <td>{{ data.car }}</td>
                 <td>{{ data.time }}</td>
             </tr>
+            }@else {
+            }
             }
         </tbody>
     </table>

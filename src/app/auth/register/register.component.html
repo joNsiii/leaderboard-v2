@@ -32,11 +32,11 @@
             </button>
         </mat-form-field>
         @if(errorMessage) {
-            <p class="error">{{ errorMessage }}</p>
+        <p class="error">{{ errorMessage }}</p>
         }
         <mat-dialog-actions>
             <button type="submit" mat-raised-button color="primary">Register</button>
-            <button [routerLink]="['/auth/login']" type="button" mat-raised-button color="primary">Back to
+            <button [routerLink]="['/login']" type="button" mat-raised-button color="primary">Back to
                 Login</button>
         </mat-dialog-actions>
     </form>

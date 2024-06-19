@@ -1,5 +1,16 @@
-<h2 mat-dialog-title></h2>
-<mat-dialog-content>This dialog showcases the title, close, content and actions elements.</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
+<mat-card>
+  <header>
+    <div class="driver-info">
+      <h1>{{ profile.userName }}</h1>
+      <h2>{{ profile.fullName }}</h2>
+      <h3>Age: {{ profile.age }}</h3>
+      <h3>Favorite car: {{ profile.favoriteCar }}</h3>
+      <h3>Favorite track: {{ profile.favoriteTrack }}</h3>
+    </div>
+    <img [src]="profile.profileImageUrl || 'img/ph-profil-pic.png'" alt="">
+  </header>
+  <section>
+    <h2>About me:</h2>
+    <p>{{ profile.aboutMe }}</p>
+  </section>
+</mat-card>

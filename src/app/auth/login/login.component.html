@@ -1,34 +1,37 @@
 <div class="login-container">
     <h1>Login</h1>
     <form (ngSubmit)="onSubmitLogin(loginForm)" #loginForm="ngForm">
-        <mat-form-field >
+        <mat-form-field>
             <mat-label>Email</mat-label>
             <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" matInput
-            placeholder="Ex. pat@example.com" required pattern="[a-zA-Z0-9._]{1,}@[a-zA-Z.]{2,}[.]{1}[a-zA-Z]{2,}">
-        @if (email.invalid && (email.touched && email.dirty || loginForm.submitted)) {
-        <mat-error class="error">Email is required</mat-error>
-        }
-        @if (email.errors?.['pattern']) {
-        <mat-error class="error">Enter a valid email</mat-error>
-        }
+                placeholder="Ex. pat@example.com" required pattern="[a-zA-Z0-9._]{1,}@[a-zA-Z.]{2,}[.]{1}[a-zA-Z]{2,}">
+            @if (email.invalid && (email.touched && email.dirty || loginForm.submitted)) {
+            <mat-error class="error">Email is required</mat-error>
+            }
+            @if (email.errors?.['pattern']) {
+            <mat-error class="error">Enter a valid email</mat-error>
+            }
         </mat-form-field>
         <mat-form-field>
             <mat-label>Enter your password</mat-label>
-            <input  matInput #password="ngModel" name="password" [(ngModel)]="user.password"
-            [type]="hide ? 'password' : 'text'" required>
-        @if (password.invalid && (password.touched && password.dirty || loginForm.submitted)) {
-        <mat-error class="error">Password is required</mat-error>
-        }
-        <button type="button" mat-icon-button matSuffix (click)="clickEvent($event)">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+            <input matInput #password="ngModel" name="password" [(ngModel)]="user.password"
+                [type]="hide ? 'password' : 'text'" required>
+            @if (password.invalid && (password.touched && password.dirty || loginForm.submitted)) {
+            <mat-error class="error">Password is required</mat-error>
+            }
+            <button type="button" mat-icon-button matSuffix (click)="clickEvent($event)">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
         </mat-form-field>
+        <mat-checkbox name="remember-me-cb" [(ngModel)]="rememberMe" class="checkbox">Remember me</mat-checkbox>
         @if(errorMessage) {
-            <p class="error">{{ errorMessage }}</p>
+        <p class="error">{{ errorMessage }}</p>
         }
         <mat-dialog-actions>
             <button type="submit" mat-raised-button color="primary">Login</button>
-            <button [routerLink]="['/auth/register']" type="button" mat-raised-button color="primary">Register</button>
+            <button [routerLink]="['/register']" type="button" mat-raised-button color="primary">Register</button>
         </mat-dialog-actions>
     </form>
+    <mat-divider></mat-divider>
+    <button (click)="loginAsGuest()" mat-raised-button color="primary" class="guest-login">Guest Login</button>
 </div>

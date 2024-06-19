@@ -1,0 +1,41 @@
+<section>
+    @if (loading) {
+    <div class="spinner-container">
+        <mat-spinner color="primary"></mat-spinner>
+        <span>Uploading image, pls wait...</span>
+    </div>
+    }
+    <h2 class="h2" mat-dialog-title>Add new clip</h2>
+    <form (ngSubmit)="onSubmit(uploadClipForm)" #uploadClipForm="ngForm">
+        <mat-dialog-content>
+            <div class="form-field-container">
+                <input type="file" id="clips" (change)="onFileSelected($event)" required>
+                @if(!selectedFile) {
+                <button class="browse-btn" mat-flat-button color="primary" (click)="triggerFileInput()"
+                    type="button">browse...</button>
+                @if(noFileSelected) {
+                <p class="error-message">Please select a file!</p>
+                }
+                }@else {
+                <div class="selected-file-container">
+                    <mat-form-field>
+                        <mat-label>Enter a title for your clip</mat-label>
+                        <input matInput type="text" name="clip-title" #title="ngModel" [(ngModel)]="clipTitle" required>
+                        @if(!title.valid && (title.touched && title.dirty || uploadClipForm.submitted) ) {
+                        <p class="error">Enter a title</p>
+                        }
+                    </mat-form-field>
+                    <div class="file-name">
+                        <span>{{ selectedFile.name }}</span>
+                        <mat-icon color="warn" (click)="deleteFile()">delete</mat-icon>
+                    </div>
+                </div>
+                }
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button type="submit" mat-button>Upload</button>
+        </mat-dialog-actions>
+    </form>
+</section>

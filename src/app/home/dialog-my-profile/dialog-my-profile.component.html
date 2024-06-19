@@ -2,12 +2,18 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div class="image-container">
-      <img class="profile-image" [src]="driverData?.profileImageUrl || 'img/ph-profil-pic.jpg'" alt="">
-      <input (change)="onFileSelected($event)" type="file">
+      <img class="profile-image" [src]="driverData?.profileImageUrl || 'img/ph-profil-pic.png'" alt="">
+      <button mat-flat-button color="primary" (click)="triggerFileInput()">Upload new profilimage</button>
+      @if (selectedFile) {
+      <div class="file-name">{{ selectedFile.name }} <mat-icon (click)="deleteFile()">delete</mat-icon></div>
+      }
+      <input id="image" (change)="onFileSelected($event)" type="file">
     </div>
+
     <mat-card-title>{{ user?.displayName }}</mat-card-title>
     <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
   </mat-card-header>
+
   <mat-card-content>
     <div class="info-table">
       <table>
@@ -27,17 +33,17 @@
               </mat-form-field></td>
           </tr>
           <tr>
-            <td>Job:</td>
+            <td>Favorite car:</td>
             <td><mat-form-field>
-                <mat-label>Job</mat-label>
-                <input [(ngModel)]="driverData!.job" matInput>
+                <mat-label>Favorite car</mat-label>
+                <input [(ngModel)]="driverData!.favoriteCar" matInput>
               </mat-form-field></td>
           </tr>
           <tr>
-            <td>City:</td>
+            <td>Favorite track:</td>
             <td><mat-form-field>
-                <mat-label>City</mat-label>
-                <input [(ngModel)]="driverData!.city" matInput>
+                <mat-label>Favorite track</mat-label>
+                <input [(ngModel)]="driverData!.favoriteTrack" matInput>
               </mat-form-field></td>
           </tr>
           <tr>
@@ -52,6 +58,7 @@
       </table>
     </div>
   </mat-card-content>
+
   <mat-card-actions>
     <button mat-button (click)="closeDialog()">Close</button>
     <button mat-button (click)="saveUserData()">Save</button>

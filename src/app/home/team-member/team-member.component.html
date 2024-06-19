@@ -1,8 +1,8 @@
 <main>
   @for (profile of userService.allUserProfiles; track $index) {
   <mat-card class="card">
-    <mat-card-content (click)="openDialog()">
-      <img [src]="profile.profileImageUrl || 'img/ph-profil-pic.jpg'" alt="">
+    <mat-card-content (click)="openDialog(profile)">
+      <img [src]="profile.profileImageUrl || 'img/ph-profil-pic.png'" alt="">
       <span class="driver-name"> {{ profile.userName }}</span>
     </mat-card-content>
   </mat-card>

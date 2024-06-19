@@ -13,6 +13,7 @@ import {
 import { AuthService } from './auth.service';
 import { User } from 'firebase/auth';
 import { UserProfile } from '../../models/User-profile.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -21,26 +22,22 @@ export class UserService {
   firestore = inject(Firestore);
   authService = inject(AuthService);
   userCollRef = collection(this.firestore, 'users');
+  _snackBar = inject(MatSnackBar);
   currentUser: User | null | undefined;
   currentUserProfile: UserProfile | undefined;
   allUserProfiles: any = [];
+  guest: boolean = false;
 
   constructor() {
     effect(() => {
       this.currentUser = this.authService.currentUserSignal();
+      this.guest =
+        this.authService.currentUserSignal()?.displayName === 'Guest';
       if (this.currentUser !== null && this.currentUser !== undefined) {
-        // this.createUserProfile();
         this.getCurrentUser(this.currentUser.uid);
       }
     });
   }
-
-  // ngOnDestroy(): void {
-  //   if (this.currentUser) {
-  //     const unsub: Unsubscribe = this.getCurrentUser(this.currentUser.uid);
-  //     unsub();
-  //   }
-  // }
 
   private getUserDocRef(userId: string) {
     return doc(this.userCollRef, userId);
@@ -70,9 +67,9 @@ export class UserService {
             fullName: '',
             email: this.currentUser.email,
             aboutMe: '',
-            age: 12,
-            city: '',
-            job: '',
+            age: 18,
+            favoriteTrack: '',
+            favoriteCar: '',
             profileImageUrl: '',
           };
           await setDoc(doc(this.userCollRef, userId), newUserProfile);
@@ -85,28 +82,11 @@ export class UserService {
     }
   }
 
-  // async getCurrentUser() {
-  //   if (this.currentUser) {
-  // const userId = this.currentUser?.uid;
-  // const docRef = this.getUserDocRef(userId);
-  //     try {
-  //       const docSnap = await getDoc(docRef);
-  //       if (docSnap.exists()) {
-  //         this.currentUserProfile = docSnap.data() as UserProfile;
-  //         return
-  //       }
-  //     } catch (error) {
-  //       console.error('Error getting current user profile:', error);
-  //     }
-  //   }
-  // }
-
   getCurrentUser(userId: string) {
     const docRef = this.getUserDocRef(userId);
 
     const unsub = onSnapshot(docRef, (user) => {
       this.currentUserProfile = user.data() as UserProfile;
-      console.log(user.data());
     });
     return unsub;
   }
@@ -121,5 +101,11 @@ export class UserService {
         console.error('Error updating user profile:', error);
       }
     }
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Please log in to use this function', 'OK', {
+      panelClass: ['snackBarStyle', 'snackBarPosition'],
+    });
   }
 }

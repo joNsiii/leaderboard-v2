@@ -1,23 +1,42 @@
-<mat-drawer-container class="example-container" autosize>
+<div class="full-site">
     <mat-toolbar>
         <div class="headline-menu-container">
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-            <h1 class="title">Time Attack</h1>
+            <img class="logo-header" src="img/stich.png" alt="">
         </div>
         <button (click)="logoutAndDeleteCurrentUser()" mat-flat-button color="warn">Logout</button>
     </mat-toolbar>
-    <mat-drawer class="sidenav" mode="side" #drawer [opened]="true">
-        <div (click)="openDialog()" class="profile-container">
-            <img [src]="userService.currentUserProfile?.profileImageUrl || 'img/ph-profil-pic.jpg'" alt="">
-            <h4>{{ userService.currentUser?.displayName }}</h4>
-        </div>
-        <div class="sidenav-links">
-            <a [routerLink]="['all-tracks']">Tracks</a>
-            <a [routerLink]="['team']">Team</a>
-            <a [routerLink]="['clips']">Clips</a>
-        </div>
-    </mat-drawer>
-    <section>
-        <router-outlet></router-outlet>
-    </section>
-</mat-drawer-container>
+    <mat-drawer-container class="wrapper" autosize>
+        <mat-drawer class="sidenav" mode="side" #drawer [opened]="true">
+            <div class="sidenav-content">
+                <div>
+                    <div (click)="openDialog()" class="profile-container">
+                        <img [src]="userService.currentUserProfile?.profileImageUrl || 'img/ph-profil-pic.png'" alt="">
+                        <h4>{{ userService.currentUser?.displayName }}</h4>
+                    </div>
+                    <div class="sidenav-links">
+                        <a [routerLink]="['all-tracks']" routerLinkActive="active"><img src="img/timer_24dp.png"
+                                alt="time">
+                            Tracks</a>
+                        <a [routerLink]="['team']" routerLinkActive="active"> <img src="img/groups_24dp.png" alt="team">
+                            Team</a>
+                        <a [routerLink]="['clips']" routerLinkActive="active"> <img src="img/ondemand_video_24dp.png"
+                                alt="clips">
+                            Clips</a>
+                    </div>
+                </div>
+                <div class="copyright-container">
+                    <span>© Jens Gartsch 2024</span>
+                    <div>
+                        <a [routerLink]="['impressum']" routerLinkActive="active">Impressum </a>
+                        <span> | </span>
+                        <a [routerLink]="['privacy-policy']" routerLinkActive="active">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </mat-drawer>
+        <section>
+            <router-outlet></router-outlet>
+        </section>
+    </mat-drawer-container>
+</div>

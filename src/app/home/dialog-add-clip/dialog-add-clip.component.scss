@@ -1,0 +1,88 @@
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  background-image: linear-gradient(
+    to right top,
+    #2b3742,
+    #242c35,
+    #1c2229,
+    #15181d,
+    #0a0d11
+  );
+
+  .spinner-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .form-field-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 24px;
+
+    .error-message {
+      position: absolute;
+      color: red;
+      margin-bottom: -75px;
+    }
+
+    .error {
+      color: red;
+      margin: 0;
+    }
+  }
+
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .selected-file-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  mat-dialog-content {
+    display: flex;
+  }
+
+  mat-dialog-actions {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .file-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      max-width: 300px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    mat-icon:hover {
+      scale: 1.1;
+      cursor: pointer;
+    }
+  }
+}

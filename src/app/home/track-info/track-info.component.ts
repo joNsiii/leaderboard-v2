@@ -78,4 +78,18 @@ export class TrackInfoComponent implements OnInit {
   sortTime(arr: CarClass[]) {
     arr.sort((a, b) => a.msec - b.msec);
   }
+
+  getTrophyByRank(index: number) {
+    if (index == 1) {
+      return 'img/icons8-first-place-ribbon-64.png';
+    }
+    if (index == 2) {
+      return 'img/icons8-second-place-ribbon-48.png';
+    }
+    if (index == 3) {
+      return 'img/icons8-third-place-ribbon-48.png';
+    } else {
+      return null;
+    }
+  }
 }

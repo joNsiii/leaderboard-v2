@@ -1,0 +1,38 @@
+mat-card {
+  width: 100%;
+  height: auto;
+  padding: 25px;
+  background-image: linear-gradient(
+    to right top,
+    #2b3742,
+    #242c35,
+    #1c2229,
+    #15181d,
+    #0a0d11
+  );
+}
+
+section {
+  margin-top: 25px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .driver-info {
+    min-width: 300px;
+  }
+
+  h1 {
+    font-size: 48px;
+    color: rgb(1, 155, 1);
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
+}

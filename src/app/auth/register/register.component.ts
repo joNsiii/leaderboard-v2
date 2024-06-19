@@ -54,7 +54,7 @@ export class RegisterComponent {
           },
           next: () => {
             this.userService.createUserProfile();
-            this.router.navigateByUrl('/auth/login');
+            this.router.navigateByUrl('/login');
           },
         });
     }

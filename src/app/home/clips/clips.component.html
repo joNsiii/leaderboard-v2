@@ -1,20 +1,26 @@
 <section>
-    <div>
-        <mat-form-field class="search-input">
+    <div class="input-and-search-section">
+        <mat-form-field>
             <mat-label>Search for a clip</mat-label>
-            <input matInput type="file">
-            <button matSuffix mat-icon-button>
-                <mat-icon>close</mat-icon>
-            </button>
+            <input matInput type="text" (input)="filterClips()" [(ngModel)]="searchValue">
         </mat-form-field>
+        <button mat-flat-button color="primary" (click)="openDialogAddClip()">ADD NEW CLIP</button>
     </div>
-    <mat-card>
-        <mat-card-content>
-            <mat-card-header>
-                <h1>MY Clip</h1>
-            </mat-card-header>
-            <video controls>
-                <source src="clips/knife vs scout.mp4" type="video/mp4">
-            </video></mat-card-content>
-    </mat-card>
+
+    <div class="clip-container">
+        @for (clip of filteredClipsCollection; track $index) {
+        @if(filteredClipsCollection.length == 0) {
+        <div>No clips available</div>
+        }
+        <mat-card>
+            <mat-card-content>
+                <mat-card-header>
+                    <h1>{{ clip.title }}</h1>
+                </mat-card-header>
+                <video controls>
+                    <source [src]="clip.name" type="video/mp4">
+                </video></mat-card-content>
+        </mat-card>
+        }
+    </div>
 </section>

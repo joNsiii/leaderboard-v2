@@ -17,8 +17,10 @@ export class TeamMemberComponent {
   userService = inject(UserService);
   unsub: Unsubscribe = this.userService.getAllUserProfiles();
 
-  openDialog() {
-    this.dialog.open(DialogDriverProfileComponent);
+  openDialog(profile: any) {
+    this.dialog.open(DialogDriverProfileComponent, {
+      data: profile,
+    });
   }
 
   ngOnDestroy(): void {

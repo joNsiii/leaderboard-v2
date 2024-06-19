@@ -31,13 +31,12 @@ export class AuthService {
       this.firebaseAuth,
       email,
       password
-    ).then(
-      (response) =>
-        updateProfile(response.user, { displayName: username }).then(() =>
-          response.user.reload().then(() => {
-            console.log(response.user);
-          })
-        )
+    ).then((response) =>
+      updateProfile(response.user, { displayName: username }).then(() =>
+        response.user.reload().then(() => {
+          console.log(response.user);
+        })
+      )
     );
     return from(promise);
   }
@@ -60,10 +59,9 @@ export class AuthService {
     onAuthStateChanged(this.firebaseAuth, (user) => {
       if (user) {
         this.currentUserSignal.set(user);
-        
       } else {
         this.currentUserSignal.set(user);
-        this.router.navigateByUrl('/auth/login');
+        this.router.navigateByUrl('/login');
       }
     });
   }

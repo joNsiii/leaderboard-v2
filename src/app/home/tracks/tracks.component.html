@@ -1,17 +1,17 @@
 <section>
   <div>
-    <mat-form-field class="search-input">
+    <mat-form-field>
       <mat-label>Search for a track</mat-label>
       <input matInput (input)="filterTracks()" type="text" [(ngModel)]="trackName">
       @if (trackName) {
-        <button matSuffix mat-icon-button (click)="trackName=''">
-          <mat-icon>close</mat-icon>
-        </button>
+      <button matSuffix mat-icon-button (click)="trackName=''">
+        <mat-icon>close</mat-icon>
+      </button>
       }
     </mat-form-field>
   </div>
-  
-  <div class="all-tracks-container"> 
+
+  <div class="all-tracks-container">
     @for (track of filteredTracksList; track $index) {
     <mat-card [routerLink]="['/home/trackinfo/' + track.id]" class="card">
       <mat-card-content>

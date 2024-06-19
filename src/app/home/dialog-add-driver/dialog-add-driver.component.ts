@@ -14,6 +14,7 @@ import { Driver } from '../../../models/add-driver.model';
 import { FirebaseService } from '../../services/firebase.service';
 import { User } from 'firebase/auth';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-dialog-add-driver',
@@ -31,9 +32,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './dialog-add-driver.component.scss',
 })
 export class DialogAddDriverComponent {
-  public dialogRef = inject(MatDialogRef<DialogAddDriverComponent>);
-  private data = inject(MAT_DIALOG_DATA);
-  public firestoreService = inject(FirebaseService);
+  firestoreService = inject(FirebaseService);
+  userService = inject(UserService);
+  dialogRef = inject(MatDialogRef<DialogAddDriverComponent>);
+  data = inject(MAT_DIALOG_DATA);
   authService = inject(AuthService);
   currentUser: User | null | undefined;
   driver = new Driver();
@@ -48,13 +50,18 @@ export class DialogAddDriverComponent {
   }
 
   async onSubmit(ngForm: NgForm) {
-    if (ngForm.valid && ngForm.submitted) {
-      this.driver.driver = this.currentUser?.displayName;
-      this.driver.msec = this.getTimeInMilliseconds(this.driver.time);
-      await this.firestoreService.addNewTime(this.data, this.driver);
-      this.dialogRef.close();
-    } else {
-      console.log('form invalid');
+    try {
+      if (ngForm.valid && ngForm.submitted && !this.userService.guest) {
+        this.driver.driver = this.currentUser?.displayName;
+        this.driver.msec = this.getTimeInMilliseconds(this.driver.time);
+        await this.firestoreService.addNewTime(this.data, this.driver);
+        this.dialogRef.close();
+      } else {
+        console.log('form invalid');
+        this.userService.openSnackBar();
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 

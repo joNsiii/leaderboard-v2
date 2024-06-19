@@ -4,7 +4,7 @@ export interface UserProfile {
   email: string | null;
   aboutMe: string;
   age: number;
-  city: string;
-  job: string;
+  favoriteCar: string;
+  favoriteTrack: string;
   profileImageUrl: string;
 }

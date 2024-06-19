@@ -19,6 +19,29 @@ body {
 }
 
 * {
-  color: rgb(212, 212, 212)
+  color: rgb(212, 212, 212);
 }
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.mat-drawer-content {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+mat-checkbox {
+  display: flex;
+  align-self: center;
+  margin-bottom: 22px;
+}
+
+.snackBarStyle button {
+  background-color: red !important;
+}
+
+.snackBarPosition {
+  margin-bottom: 50px !important;
+}
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";

@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import {
   getDownloadURL,
   getStorage,
@@ -15,6 +17,7 @@ import {
 } from '@angular/fire/storage';
 import { FirebaseApp } from '@angular/fire/app';
 import { UserProfile } from '../../../models/User-profile.interface';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-dialog-my-profile',
   standalone: true,
@@ -24,6 +27,8 @@ import { UserProfile } from '../../../models/User-profile.interface';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   templateUrl: './dialog-my-profile.component.html',
   styleUrl: './dialog-my-profile.component.scss',
@@ -49,11 +54,19 @@ export class DialogMyProfileComponent implements OnInit {
   }
 
   async saveUserData() {
-    if (this.selectedFile) {
-      await this.uploadImage(this.selectedFile);
+    try {
+      if (!this.userService.guest) {
+        if (this.selectedFile) {
+          await this.uploadImage(this.selectedFile);
+        }
+        await this.userService.updateCurrentUser(this.driverData);
+        this.closeDialog();
+      } else {
+        this.userService.openSnackBar();
+      }
+    } catch (error) {
+      console.error(error);
     }
-    await this.userService.updateCurrentUser(this.driverData);
-    this.closeDialog();
   }
 
   closeDialog() {
@@ -78,5 +91,14 @@ export class DialogMyProfileComponent implements OnInit {
     } else {
       console.error('User is not authenticated.');
     }
+  }
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('image') as HTMLInputElement;
+    fileInput.click();
+  }
+
+  deleteFile() {
+    this.selectedFile = null;
   }
 }
