@@ -10,6 +10,8 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { Driver } from '../../models/add-driver.model';
+import { Observable, from } from 'rxjs';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -26,24 +28,6 @@ export class FirebaseService {
       return { id, name };
     });
     return tracks;
-  }
-
-  async getSingleTrackData(trackId: string, callback: (data: any) => void) {
-    try {
-      const unsub = onSnapshot(doc(this.tracksCollRef, trackId), (doc) => {
-        if (doc.exists()) {
-          callback({id: doc.id, ...doc.data()});
-        } else {
-          console.error('No document found');
-          callback(null);
-        }
-      });
-      return unsub;
-    } catch (error) {
-      console.error('Error fetching document:', error);
-      callback(null);
-      return () => {};
-    }
   }
 
   async addNewTime(id: string, driver: Driver) {

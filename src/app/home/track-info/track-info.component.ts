@@ -10,6 +10,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { Unsubscribe } from 'firebase/firestore';
 import { DialogAddDriverComponent } from '../dialog-add-driver/dialog-add-driver.component';
 import { CarClass } from '../../../models/car-class.interface';
+import { Observable, from } from 'rxjs';
+import {
+  Firestore,
+  collection,
+  doc,
+  onSnapshot,
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-track-info',
@@ -28,9 +35,10 @@ import { CarClass } from '../../../models/car-class.interface';
   styleUrl: './track-info.component.scss',
 })
 export class TrackInfoComponent implements OnInit {
-  public firestoreService = inject(FirebaseService);
-  private route = inject(ActivatedRoute);
-  public dialog = inject(MatDialog);
+  firestore = inject(Firestore);
+  tracksCollRef = collection(this.firestore, 'tracks');
+  route = inject(ActivatedRoute);
+  dialog = inject(MatDialog);
   unsub: Unsubscribe | undefined;
   newDataCount = 0;
   trackId: string = '';
@@ -42,7 +50,7 @@ export class TrackInfoComponent implements OnInit {
       this.trackId = paramMap.get('id')!;
     });
     if (this.trackId) {
-      this.getCurrentTrackData();
+      this.getSingleTrackData(this.trackId);
     }
   }
 
@@ -54,19 +62,15 @@ export class TrackInfoComponent implements OnInit {
 
   onChange() {}
 
-  async getCurrentTrackData() {
-    const unsub = this.firestoreService.getSingleTrackData(
-      this.trackId,
-      (data) => {
-        if (data) {
-          this.currentTrackData = data;
-          this.sortTime(this.currentTrackData[this.carClass]);
-        } else {
-          console.log('no data available');
-        }
+  getSingleTrackData(trackId: string) {
+    const unsub = onSnapshot(doc(this.tracksCollRef, trackId), (doc) => {
+      if (doc.exists()) {
+        this.currentTrackData = { id: doc.id, ...doc.data() };
+      } else {
+        this.currentTrackData = null;
       }
-    );
-    this.unsub = await unsub;
+    });
+    return unsub;
   }
 
   openDialog(): void {
