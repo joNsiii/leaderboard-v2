@@ -1,10 +1,12 @@
 <main>
   @for (profile of userService.allUserProfiles; track $index) {
+  @if(profile.userName !== 'Guest') {
   <mat-card class="card">
     <mat-card-content (click)="openDialog(profile)">
       <img [src]="profile.profileImageUrl || 'img/ph-profil-pic.png'" alt="">
       <span class="driver-name"> {{ profile.userName }}</span>
     </mat-card-content>
   </mat-card>
+  }
   }
 </main>
