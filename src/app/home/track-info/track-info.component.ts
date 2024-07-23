@@ -3,14 +3,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { FirebaseService } from '../../services/firebase.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Unsubscribe } from 'firebase/firestore';
 import { DialogAddDriverComponent } from '../dialog-add-driver/dialog-add-driver.component';
 import { CarClass } from '../../../models/car-class.interface';
-import { Observable, from } from 'rxjs';
 import {
   Firestore,
   collection,
@@ -66,6 +64,8 @@ export class TrackInfoComponent implements OnInit {
     const unsub = onSnapshot(doc(this.tracksCollRef, trackId), (doc) => {
       if (doc.exists()) {
         this.currentTrackData = { id: doc.id, ...doc.data() };
+        this.sortTime(this.currentTrackData.gt3);
+        this.sortTime(this.currentTrackData.hypercars);
       } else {
         this.currentTrackData = null;
       }

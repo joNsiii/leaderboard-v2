@@ -29,7 +29,6 @@ import { AllTracks } from '../../../models/all-tracks.interface';
 export class TracksComponent implements OnInit {
   public firestore = inject(Firestore);
   public firestoreService = inject(FirebaseService);
-  public http = inject(HttpClient);
   trackList: AllTracks[] = [];
   trackName: string = '';
   filteredTracksList: AllTracks[] = [];

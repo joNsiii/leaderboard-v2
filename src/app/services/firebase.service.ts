@@ -6,12 +6,9 @@ import {
   doc,
   getDoc,
   getDocs,
-  onSnapshot,
   updateDoc,
 } from '@angular/fire/firestore';
 import { Driver } from '../../models/add-driver.model';
-import { Observable, from } from 'rxjs';
-import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',

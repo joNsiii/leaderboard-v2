@@ -41,7 +41,7 @@ export class DialogAddDriverComponent {
   driver = new Driver();
   filteredCars: string[] = [];
   cars: any = {
-    gt3: ['Ferrari', 'Porsche'],
+    gt3: ['Ferrari', 'Porsche', 'BMW M4'],
     hypercars: ['McLaren P1', 'Ferrari LaFerrari'],
   };
 
@@ -53,7 +53,7 @@ export class DialogAddDriverComponent {
     try {
       if (ngForm.valid && ngForm.submitted && !this.userService.guest) {
         this.driver.driver = this.currentUser?.displayName;
-        this.driver.msec = this.getTimeInMilliseconds(this.driver.time);
+        this.driver.msec = await this.getTimeInMilliseconds(this.driver.time);
         await this.firestoreService.addNewTime(this.data, this.driver);
         this.dialogRef.close();
       } else {
@@ -70,11 +70,17 @@ export class DialogAddDriverComponent {
     this.filteredCars = this.cars[selectedClass];
   }
 
-  getTimeInMilliseconds(time: string) {
-    let splittedTime = time.split('.');
-    let minutes = parseInt(splittedTime[0], 10);
-    let seconds = parseInt(splittedTime[1], 10);
-    let milliSeconds = parseInt(splittedTime[2], 10);
-    return minutes * 60 * 1000 + seconds * 1000 + milliSeconds;
+  getTimeInMilliseconds(time: string): Promise<number> {
+    return new Promise((resolve, reject) => {
+      try {
+        let splittedTime = time.split('.');
+        let minutes = parseInt(splittedTime[0], 10);
+        let seconds = parseInt(splittedTime[1], 10);
+        let milliSeconds = parseInt(splittedTime[2], 10);
+        resolve(minutes * 60 * 1000 + seconds * 1000 + milliSeconds);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }

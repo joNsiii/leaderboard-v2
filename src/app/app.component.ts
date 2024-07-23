@@ -32,13 +32,13 @@ export class AppComponent implements OnInit {
     this.authService.checkLoginStatus();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    const width = window.innerWidth;
-    if (width <= 750) {
-      this.deviceToSmall = true;
-    } else {
-      this.deviceToSmall = false;
-    }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(): void {
+  //   const width = window.innerWidth;
+  //   if (width <= 750) {
+  //     this.deviceToSmall = true;
+  //   } else {
+  //     this.deviceToSmall = false;
+  //   }
+  // }
 }
